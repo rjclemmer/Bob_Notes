@@ -1,6 +1,6 @@
 // init express
 const express = require('express')
-
+const path = require("path");
 //express function as an app
 const app = express()
 
@@ -11,6 +11,16 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true}))
+
+// home page
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
+//call for notes page
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
 
 // listening 
 
