@@ -1,8 +1,10 @@
 // init express
-const express = require('express')
+const express = require('express');
+const fs = require('fs');
 const path = require("path");
+const uuid =require("./db/uuid");
 //express function as an app
-const app = express()
+const app = express();
 
 // server or 3000
 const PORT = process.env.PORT || 3000;
@@ -36,7 +38,14 @@ app.get("/notes", function (req, res) {
 });
 
 // post notes
-app.post("/api/notes")
+app.post("/api/notes", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    const newNotes = req.body;
+    newNotes.id = uuid();
+    notes.push(newNotes);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    res.json(notes);
+})
 
 // listening 
 
