@@ -22,20 +22,7 @@ app.use(express.static("public"));
 // gets saved note and joins in db
 app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname,"/db/db.json"));
-})
-
-// post notes
-app.post("/api/notes", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    const newNotes = req.body;
-    newNotes.id = uuid();
-    notes.push(newNotes);
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
-    res.json(notes);
-})
-
-
-
+});
 
 // home page
 app.get("/", function (req, res) {
@@ -46,6 +33,25 @@ app.get("/", function (req, res) {
 app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
+
+// call for wildcard
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
+// post notes
+app.post("/api/notes", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    const newNotes = req.body;
+    newNotes.id = uuid();
+    notes.push(newNotes);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    res.json(notes);
+});
+
+
+
+
 
 
 // listening 
