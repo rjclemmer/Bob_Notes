@@ -41,12 +41,21 @@ app.get('*', (req, res) => {
 
 // post notes
 app.post("/api/notes", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    const newNotes = req.body;
-    newNotes.id = uuid();
-    notes.push(newNotes);
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
-    res.json(notes);
+    const { title, text} = req.body;
+    if (title && text) {
+        const newNote = {
+            id : uuid(),
+            title,
+            text
+        }
+        fs.readFile('./db/db.json') // continue here!!!!!!
+    }
+    // const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    // const newNotes = req.body;
+    // newNotes.id = uuid();
+    // notes.push(newNotes);
+    // fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    // res.json(notes);
 });
 
 
