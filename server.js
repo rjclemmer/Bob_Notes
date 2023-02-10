@@ -50,13 +50,13 @@ app.post("/api/notes", (req, res) => {
     res.json(notes);
 });
 
-// delete notes
-app.delete("api/notes/:id", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    notes = notes.filter((notes) => notes.id !== id);
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes, null, 2));
-    res.json(notes);
-})
+// // delete notes
+// app.delete("api/notes/:id", (req, res) => {
+//     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+//     notes = notes.filter((notes) => notes.id !== id);
+//     fs.writeFileSync("./db/db.json", JSON.stringify(notes, null, 2));
+//     res.json(notes);
+// })
 
 // listening
 
