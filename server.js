@@ -51,12 +51,12 @@ app.post("/api/notes", (req, res) => {
 });
 
 // delete notes
-// app.delete("api/notes/:id", (req, res) => {
-//     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-//     const delNote = notes.filter((rmvNote) => rmvNote.id !== req.params.id);
-//     fs.writeFileSync("./db/db.json", JSON.stringify(delNote));
-//     res.json(delNote);
-// })
+app.delete("api/notes/:id", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    notes = notes.filter((notes) => notes.id !== id);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    res.json(notes);
+})
 
 // listening
 
