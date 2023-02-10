@@ -9,7 +9,6 @@ The application’s front end has already been created. It's your job to build t
 ## Deployed Heroku Link
 https://desolate-mesa-26514.herokuapp.com/
 
-## Screenshot
 
 ## Screenshot 
 <img src="./assets/screenshot_heroku.jpeg" alt="Photo of Notes App" title="Photo of Notes App">
